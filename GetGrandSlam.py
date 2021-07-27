@@ -6,20 +6,41 @@ usopen_URL = "https://www.grandslamtennistours.com/us-open/schedule-of-play"
 wimbledon_URL ="https://www.grandslamtennistours.com/wimbledon/schedule-of-play"
 ausopen_URL ="https://www.grandslamtennistours.com/australian-open/schedule-of-play"
 
-#GET requests to the URLs
-pageUSOpen = requests.get(usopen_URL)
-pageWimbledon = requests.get(wimbledon_URL)
-pageAusOpen = requests.get(ausopen_URL)
+#GET requests to the URLs 
+try:
+	pageUSOpen = requests.get(usopen_URL)
+except:
+	print("Couldn't check schedules for US Open")
 
-#!TODO --> try and error block for get 
+try:
+	pageWimbledon = requests.get(wimbledon_URL)
+except:
+	print("Couldn't check schedules for Wimbledon")
+
+
+try:
+	pageausOpen = requests.get(ausopen_URL)
+except:
+	print("Couldn't check schedules for Australian Open")
+
+
 
 soup = BeautifulSoup(pageUSOpen.content, "html.parser")
-results = soup.find(class_="main-content wysiwyg-content")
+results = soup.find("tbody")
 newFile = open("/Users/oishikachaudhury/Downloads/schedule-of-play.txt", "w")
 
-for line in results:
-	newFile.write(str(line))
-newFile.close()
+print(results)
+
+
+
+
+
+
+
+
+
+
+
 
 
 
