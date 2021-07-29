@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import oascript
 
 
 #urls for us, aus, and english open
