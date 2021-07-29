@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-import oascript
 
 
 #urls for us, aus, and english open
@@ -43,8 +42,9 @@ readfile.readline()
 
 for line in readfile:
 	if line[:3] == "<th":
-		#process for date
+		#process for date and day
 		start = line.find(">")
+		day = line[start+1:start+4]
 		end =  line.find(" ",start + 10)
 		date = line[start+5:end].strip(" ")
 		for i in range(2):
@@ -63,7 +63,11 @@ for line in readfile:
 		end =  line.find("<",start + 1)
 		featuredPlay = line[start+1:end].strip(" ")
 		#add to list
-		schedules.append([date, time, featuredPlay])
+		schedules.append([day, date, time, featuredPlay])
+
+
+#now add this stuff to reminders
+
 
 
 
@@ -85,8 +89,9 @@ readfile.readline()
 
 for line in readfile:
 	if line[:3] == "<th":
-		#process for date
+		#process for date and date
 		start = line.find(">")
+		day = line[start+1:start+4]
 		end =  line.find(" ",start + 10)
 		date = line[start+5:end].strip(" ")
 		for i in range(3):
@@ -104,12 +109,12 @@ for line in readfile:
 		end =  line.find("<",start + 1)
 		featuredPlay = line[start+1:end].strip(" ")
 		#add to list
-		schedules.append([date, time, featuredPlay])
+		schedules.append([day, date, time, featuredPlay])
 
 
 
 '''
 Additional file processing is required for Australian Open matches 
 '''
-
+#add Wimbledon to reminders
 
