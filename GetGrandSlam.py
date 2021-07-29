@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-
+import applescript
 
 
 
@@ -81,8 +81,10 @@ for line in readfile:
 
 #now add this stuff to reminders
 for schedule in schedules:
-	command = 'tell application "Reminders" to make new reminder at end  with properties ' + '{' + 'name:US Open, due date:date "{fday}, {fdate}, 2021 at {ftime}", body:"{fbody}"'.format(fday = schedule[0] , fdate = string_reverse(schedule[1]) , ftime = schedule[2], fbody = schedule[3]) + \
+	command = 'tell application "Reminders" to make new reminder at end  with properties ' + '{' + 'name:"US Open", due date:date "{fday}, {fdate}, 2021 at {ftime}", body:"{fbody}"'.format(fday = schedule[0] , fdate = string_reverse(schedule[1]) , ftime = schedule[2], fbody = schedule[3]) + \
 	'}'
+	applescript.run(command)
+
 
 
 
@@ -127,8 +129,10 @@ for line in readfile:
 		schedules.append([day, date, time, featuredPlay])
 
 for schedule in schedules:
-	command = 'tell application "Reminders" to make new reminder at end  with properties ' + '{' + 'name:Wimbledon, due date:date "{fday}, {fdate}, 2021 at {ftime}", body:"{fbody}"'.format(fday = schedule[0] , fdate = string_reverse(schedule[1]) , ftime = schedule[2], fbody = schedule[3]) + \
+	command = 'tell application "Reminders" to make new reminder at end  with properties ' + '{' + 'name:"Wimbledon", due date:date "{fday}, {fdate}, 2021 at {ftime}", body:"{fbody}"'.format(fday = schedule[0] , fdate = string_reverse(schedule[1]) , ftime = schedule[2], fbody = schedule[3]) + \
 	'}'
+	applescript.run(command)
+
 
 '''
 Additional file processing is required for Australian Open matches 
