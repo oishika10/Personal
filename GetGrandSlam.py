@@ -1,6 +1,18 @@
 import requests
 from bs4 import BeautifulSoup
 
+dateConversionDict = {"Mon":"Monday", "Tue":"Tuesday", "Wed":"Wednesday", "Thu":"Thursday","Fri":"Friday"}
+monthConversionDict = {"Jan" : "January", "Feb": "February", "Mar": "March", "Apr": "April", "May":"May", \
+"Jun":"June", "Jul":"July", "Aug":"August", "Sep":"September", "Aug":"August", "Sep":"September", "Oct":"October", "Nov":"November"}
+
+def string_reverse(date):
+	space = date.find(" ")
+	returnString = date[space+1:] + date[:space]
+	return returnString
+
+
+
+
 
 #urls for us, aus, and english open
 usopen_URL = "https://www.grandslamtennistours.com/us-open/schedule-of-play"
@@ -68,8 +80,9 @@ for line in readfile:
 
 #now add this stuff to reminders
 
-
-
+command = "tell application \"Reminders\" to make new reminder at end \
+with properties {due date:date \"Thursday, July 10, 2014 at 3:00:00 PM\", \
+body:\"This is a note for the reminder\"}"
 
 #----------------------------------------- for Wimbledon ----------------------------------------------------------------------------------------
 #use Beautiful Soup to parse through content by tag
@@ -112,7 +125,7 @@ for line in readfile:
 		schedules.append([day, date, time, featuredPlay])
 
 
-
+print(schedules)
 '''
 Additional file processing is required for Australian Open matches 
 '''
